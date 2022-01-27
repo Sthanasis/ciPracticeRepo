@@ -22,6 +22,6 @@ jobs:
       - name: Install Pod Dependencies
         run: cd ./ios && pod install && cd ..
       - name: Detox Build
-        run: detox build --configuration ios.sim.release
+        run: detox build -c ios
       - name: Detox Test
-        run: detox test --configuration ios.sim.release --cleanup
+        run: detox test -c ios --cleanup
