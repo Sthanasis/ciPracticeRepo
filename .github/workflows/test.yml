@@ -1,0 +1,27 @@
+name: Test
+on: [push]
+
+jobs:
+  build:
+    name: Test
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Node
+        run: |
+          npm install -g react-native-cli
+          npm install -g detox-cli
+      - name: Install Detox
+        run: |
+          brew tap wix/brew
+          brew install applesimutils
+      - name: Install Node Dependencies
+        run: npm install
+      - name: Unit Tests
+        run: npm test
+      - name: Install Pod Dependencies
+        run: cd ./ios && pod install && cd ..
+      - name: Detox Build
+        run: detox build --configuration ios.sim.release
+      - name: Detox Test
+        run: detox test --configuration ios.sim.release --cleanup
