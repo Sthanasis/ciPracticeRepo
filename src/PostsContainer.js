@@ -7,7 +7,7 @@ const PostsContainer = () => {
 
   useEffect(() => {
     api.get('/posts').then((response) => {
-        setPosts(response.data);
+      setPosts(response);
     }).catch(err => console.log(err));
   }, []);
 
