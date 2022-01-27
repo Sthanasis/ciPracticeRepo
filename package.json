@@ -6,14 +6,13 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest",
+    "test": "API_DRIVER=remote jest",
     "lint": "eslint ."
   },
   "dependencies": {
     "axios": "^0.25.0",
     "react": "17.0.2",
-    "react-native": "0.67.1",
-    "react-native-config": "^1.4.5"
+    "react-native": "0.67.1"
   },
   "devDependencies": {
     "@babel/core": "7.16.12",
@@ -21,6 +20,7 @@
     "@react-native-community/eslint-config": "2.0.0",
     "@testing-library/react-native": "^9.0.0",
     "babel-jest": "26.6.3",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "detox": "^19.4.2",
     "eslint": "7.14.0",
     "eslint-plugin-detox": "^1.0.0",

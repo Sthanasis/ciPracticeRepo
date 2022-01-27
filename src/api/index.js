@@ -1,7 +1,7 @@
 import fake from './fake';
 import remote from './remote';
 
-const apiDriver = env.API_DRIVER;
+const apiDriver = process.env['API_DRIVER']
 let api;
 
 switch (apiDriver) {

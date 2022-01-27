@@ -4,7 +4,7 @@
   "skipLegacyWorkersInjection": true,
   "apps": {
     "ios": {
-      "build": "ENVFILE=.env.detox xcodebuild -workspace ios/ReactNativeTesting.xcworkspace -scheme ReactNativeTesting -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+      "build": "API_DRIVER=fake xcodebuild -workspace ios/ReactNativeTesting.xcworkspace -scheme ReactNativeTesting -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
       "type": "ios.app",
       "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/ReactNativeTesting.app"
     },
