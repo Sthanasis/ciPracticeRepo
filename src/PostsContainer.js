@@ -1,14 +1,17 @@
-import React, {useState, useEffect} from 'react';
-import {Text, View} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View } from 'react-native';
 import api from './api';
 
 const PostsContainer = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    api.get('/posts').then((response) => {
-      setPosts(response);
-    }).catch(err => console.log(err));
+    api
+      .get('/posts')
+      .then((response) => {
+        setPosts(response);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
