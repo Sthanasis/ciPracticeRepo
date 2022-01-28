@@ -3,8 +3,13 @@
   "runnerConfig": "e2e/config.json",
   "skipLegacyWorkersInjection": true,
   "apps": {
-    "ios": {
+    "ios.debug": {
       "build": "API_DRIVER=fake xcodebuild -workspace ios/ReactNativeTesting.xcworkspace -scheme ReactNativeTesting -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+      "type": "ios.app",
+      "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/ReactNativeTesting.app"
+    },
+    "ios.release": {
+      "build": "xcodebuild -workspace ios/ReactNativeTesting.xcworkspace -scheme ReactNativeTesting -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
       "type": "ios.app",
       "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/ReactNativeTesting.app"
     },
@@ -34,9 +39,9 @@
     }
   },
   "configurations": {
-    "ios": {
+    "ios.release": {
       "device": "simulator",
-      "app": "ios"
+      "app": "ios.release"
     },
     "android.emu.debug": {
       "device": "emulator",

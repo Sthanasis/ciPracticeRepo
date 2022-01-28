@@ -19,11 +19,7 @@ jobs:
         run: npm install
       - name: Unit Tests
         run: npm test
-      - name: Install Pod Dependencies
-        run: cd ./ios && pod install && cd ..
-      - name: Run metro bundler
-        run: npm start
-      - name: Detox Build
-        run: detox build --configuration ios
+      - name: Detox Build Android
+        run: detox build --configuration android.emu.release
       - name: Detox Test
-        run: detox test --configuration ios
+        run: detox test --configuration android.emu.release --cleanup
