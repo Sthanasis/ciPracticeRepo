@@ -6,7 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "API_DRIVER=remote jest",
+    "test": "API_DRIVER=remote jest --collect-coverage",
     "lint": "eslint ."
   },
   "dependencies": {
