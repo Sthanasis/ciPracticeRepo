@@ -1,25 +1,43 @@
 name: Test
+
 on: [push]
 
 jobs:
   build:
-    name: Test
-    runs-on: macOS-latest
+    runs-on: macos-latest
+
     steps:
-      - uses: actions/checkout@v1
-      - name: Set up Node
-        run: |
-          npm install -g react-native-cli
-          npm install -g detox-cli
-      - name: Install Detox
-        run: |
-          brew tap wix/brew
-          brew install applesimutils
-      - name: Install Node Dependencies
-        run: npm install
-      - name: Unit Tests
-        run: npm test
+    - name: Checkout project
+      uses: actions/checkout@v1
+
+    - name: Specify node version
+      uses: actions/setup-node@v1
+      with:
+        node-version: '16.x'
+
+    - name: Use specific Java version for sdkmanager to work
+      uses: joschi/setup-jdk@v1
+      with:
+        java-version: 'openjdk8'
+        architecture: 'x64'
+
+    - name: Download Android Emulator Image
+      run: |
+        echo y | sudo $ANDROID_HOME/tools/bin/sdkmanager --verbose "system-images;android-27;google_apis;x86"
+        $ANDROID_HOME/tools/bin/avdmanager create avd -n emu -k "system-images;android-27;google_apis;x86" -b "x86" -c 1G -d 7 -f
+    - name: Install node_modules
+      run: |
+        npm install
+    - name: Android test
+      timeout-minutes: 10
+      run: |
+        mkdir -p artifacts
+        export PATH=$PATH:$ANDROID_HOME/platform-tools
+        $ANDROID_HOME/emulator/emulator @emu &
+        adb wait-for-device; adb shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done;'; adb shell wm dismiss-keyguard
+        yarn test-detox-android
+
       - name: Detox Build Android
         run: detox build --configuration android.emu.release
-      - name: Detox Test
+      - name: Detox Test Android
         run: detox test --configuration android.emu.release --cleanup
