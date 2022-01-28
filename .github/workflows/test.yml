@@ -21,6 +21,8 @@ jobs:
         run: npm test
       - name: Install Pod Dependencies
         run: cd ./ios && pod install && cd ..
+      - name: Run metro bundler
+        run: npm start
       - name: Detox Build
         run: detox build --configuration ios
       - name: Detox Test
