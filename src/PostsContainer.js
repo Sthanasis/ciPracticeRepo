@@ -19,6 +19,7 @@ const PostsContainer = () => {
       {posts.map((post) => (
         <Text key={post.id}>{post.title}</Text>
       ))}
+      <Text>A simple Change</Text>
     </View>
   );
 };
