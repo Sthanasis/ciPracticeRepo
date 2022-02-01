@@ -7,7 +7,9 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "API_DRIVER=remote jest --collect-coverage",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "e2e:build": "detox build --configuration",
+    "e2e:test": "detox test --configuration"
   },
   "dependencies": {
     "axios": "^0.25.0",
