@@ -42,5 +42,5 @@ jobs:
           target: default
           arch: x86_64
           profile: pixel
-          avd-name: Pixel_API_29_AOSP
+          avd-name: Pixel_3a_API_30_x86
           script: bash ${{ github.workspace }}/scripts/run-e2e-android-release.sh
