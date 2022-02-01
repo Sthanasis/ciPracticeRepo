@@ -28,6 +28,8 @@ jobs:
       - name: Install node_modules
         run: |
           npm install
+      - name: Build Android
+        run: |
           detox build --configuration android.emu.release
       - name: Android test
         timeout-minutes: 10
