@@ -17,7 +17,7 @@ jobs:
 
       - name: Use specific Java version for sdkmanager to work
         uses: joschi/setup-jdk@v1
-        env: 
+        env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         with:
           java-version: 'openjdk8'
@@ -30,6 +30,9 @@ jobs:
       - name: Install node_modules
         run: |
           npm install
+      - name: Install Detox cli
+        run: |
+          npm install -g detox-cli
       - name: Build Android
         run: |
           detox build --configuration android.emu.release
